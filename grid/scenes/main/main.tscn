@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://ca8sevrpco7kn"]
+
+[ext_resource type="Script" uid="uid://cn3nrivjcjt3" path="res://scenes/main/main.gd" id="1_kpy04"]
+[ext_resource type="PackedScene" uid="uid://cthrnl1mcxh04" path="res://scenes/unit_path_rendering/unit_path_rendering.tscn" id="6_ouso4"]
+[ext_resource type="Resource" uid="uid://igyiq87oe5qm" path="res://node res/grid/grid.tres" id="7_b1x3f"]
+[ext_resource type="PackedScene" uid="uid://qaci2pqb6jy4" path="res://scenes/unit_walk_overlay/unit_walk_overlay.tscn" id="9_blune"]
+[ext_resource type="PackedScene" uid="uid://bbhqnkk6grj42" path="res://scenes/game_board/game_board.tscn" id="10_kiuot"]
+[ext_resource type="PackedScene" uid="uid://chk2frsybmd6y" path="res://scenes/player_camera/player_camera.tscn" id="11_fowwp"]
+[ext_resource type="PackedScene" uid="uid://b60lpi7g48ad0" path="res://scenes/player_unit/player_unit.tscn" id="12_h2m0w"]
+[ext_resource type="PackedScene" uid="uid://co0j24p16nwlb" path="res://scenes/cursor/cursor.tscn" id="13_j4tho"]
+[ext_resource type="PackedScene" uid="uid://cffabgpjea7ab" path="res://scenes/spawn_control_test_screen/control.tscn" id="17_ctxui"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_kpy04")
+player_spawn_scene = ExtResource("12_h2m0w")
+
+[node name="Game_Board" parent="." instance=ExtResource("10_kiuot")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Game_Board"]
+process_mode = 1
+layer = 0
+visible = false
+
+[node name="Control" parent="Game_Board/CanvasLayer" instance=ExtResource("17_ctxui")]
+focus_mode = 1
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+
+[node name="player_camera" parent="Game_Board" instance=ExtResource("11_fowwp")]
+
+[node name="unit_path_rendering" parent="Game_Board" instance=ExtResource("6_ouso4")]
+grid = ExtResource("7_b1x3f")
+
+[node name="unit_walk_overlay" parent="Game_Board" instance=ExtResource("9_blune")]
+
+[node name="cursor" parent="Game_Board" instance=ExtResource("13_j4tho")]
+
+[node name="mp_spawn_positions" type="Node2D" parent="Game_Board"]
+
+[node name="0" type="Node2D" parent="Game_Board/mp_spawn_positions" groups=["mp_spawn"]]
+position = Vector2(256, 256)
+
+[node name="1" type="Node2D" parent="Game_Board/mp_spawn_positions" groups=["mp_spawn"]]
+position = Vector2(528, 256)
+
+[node name="2" type="Node2D" parent="Game_Board/mp_spawn_positions" groups=["mp_spawn"]]
+position = Vector2(524, 524)
+
+[node name="3" type="Node2D" parent="Game_Board/mp_spawn_positions" groups=["mp_spawn"]]
+position = Vector2(256, 524)
+
+[connection signal="accept_pressed" from="Game_Board/cursor" to="Game_Board" method="_on_cursor_accept_pressed"]
+[connection signal="moved" from="Game_Board/cursor" to="Game_Board" method="_on_cursor_moved"]

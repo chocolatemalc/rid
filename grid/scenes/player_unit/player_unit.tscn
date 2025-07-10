@@ -1,0 +1,159 @@
+[gd_scene load_steps=11 format=3 uid="uid://b60lpi7g48ad0"]
+
+[ext_resource type="Texture2D" uid="uid://bo31lbg0toba6" path="res://graphics_resources/32b_shadow.png" id="1_lwftw"]
+[ext_resource type="Script" uid="uid://b3t2stdhjr3yx" path="res://scenes/player_unit/player_unit.gd" id="1_p1jbe"]
+[ext_resource type="Texture2D" uid="uid://c7lwgsces1h8c" path="res://graphics_resources/characters/rogues.png" id="2_5owlu"]
+[ext_resource type="Theme" uid="uid://ceqwx4h15faah" path="res://graphics_resources/characters/default_healthbar_theme.tres" id="4_hsm54"]
+
+[sub_resource type="Animation" id="Animation_lje3c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("unit_path_follow_2d/unit_sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("unit_path_follow_2d/unit_sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7ydbl"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("unit_path_follow_2d/unit_sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6spgy"]
+resource_name = "selected"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("unit_path_follow_2d/unit_sprite:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1489.24, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.411765)]
+}
+
+[sub_resource type="Animation" id="Animation_8pd3s"]
+resource_name = "walking"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("unit_path_follow_2d/unit_sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.000190274, 0.060371),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("unit_path_follow_2d/unit_sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1e-05),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_db6f2"]
+_data = {
+&"RESET": SubResource("Animation_lje3c"),
+&"idle": SubResource("Animation_7ydbl"),
+&"selected": SubResource("Animation_6spgy"),
+&"walking": SubResource("Animation_8pd3s")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_els43"]
+properties/0/path = NodePath("unit_animation:current_animation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("unit_path_follow_2d/unit_sprite:flip_h")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("unit_path_follow_2d:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:position")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:cell")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+
+[node name="player_unit" type="Path2D"]
+script = ExtResource("1_p1jbe")
+
+[node name="unit_path_follow_2d" type="PathFollow2D" parent="."]
+rotates = false
+loop = false
+
+[node name="unit_sprite_shadow" type="Sprite2D" parent="unit_path_follow_2d"]
+texture = ExtResource("1_lwftw")
+offset = Vector2(0, -11)
+
+[node name="unit_sprite" type="Sprite2D" parent="unit_path_follow_2d"]
+position = Vector2(0, -16)
+texture = ExtResource("2_5owlu")
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="health_bar" type="ProgressBar" parent="unit_path_follow_2d"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = -48.0
+offset_right = 16.0
+offset_bottom = -40.0
+grow_horizontal = 2
+theme = ExtResource("4_hsm54")
+max_value = 10.0
+value = 10.0
+fill_mode = 1
+show_percentage = false
+
+[node name="unit_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_db6f2")
+}
+
+[node name="mp_sync" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_els43")

@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://c08uj7jkvaqbm"]
+
+[ext_resource type="Texture2D" uid="uid://brthqyinwhlgr" path="res://graphics_resources/Arrows.png" id="1_f67xt"]
+[ext_resource type="Script" uid="uid://b7rne8ssutwxa" path="res://scenes/unit_path_rendering/unit_path_rendering.gd" id="2_vxcx0"]
+[ext_resource type="Resource" uid="uid://igyiq87oe5qm" path="res://node res/grid/grid.tres" id="3_cslgw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jk4e0"]
+texture = ExtResource("1_f67xt")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/left_side = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/bottom_side = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/terrains_peering_bit/left_side = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrain = 0
+3:2/0/terrains_peering_bit/right_side = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/top_side = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/top_side = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/left_side = 0
+1:2/0/terrains_peering_bit/top_side = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/right_side = 0
+0:2/0/terrains_peering_bit/top_side = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/right_side = 0
+0:1/0/terrains_peering_bit/bottom_side = 0
+
+[sub_resource type="TileSet" id="TileSet_q48ej"]
+tile_size = Vector2i(32, 32)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Nav_Arrows"
+terrain_set_0/terrain_0/color = Color(0.696642, 0, 0.389799, 1)
+sources/0 = SubResource("TileSetAtlasSource_jk4e0")
+
+[node name="path_tiles" type="TileMap"]
+tile_set = SubResource("TileSet_q48ej")
+format = 2
+script = ExtResource("2_vxcx0")
+grid = ExtResource("3_cslgw")

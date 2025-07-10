@@ -1,0 +1,26 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b7lyg8epvjvll"]
+
+[ext_resource type="Texture2D" uid="uid://dsvvrgd81exv1" path="res://graphics_resources/unit_overlay.png" id="1_8u7gx"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d3ywt"]
+resource_name = "movement_indicator"
+texture = ExtResource("1_8u7gx")
+texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 13
+0:0/0 = 0
+0:0/1 = 1
+0:0/2 = 2
+0:0/3 = 3
+0:0/4 = 4
+0:0/5 = 5
+0:0/6 = 6
+0:0/7 = 7
+0:0/8 = 8
+0:0/9 = 9
+0:0/10 = 10
+0:0/11 = 11
+0:0/12 = 12
+
+[resource]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_d3ywt")

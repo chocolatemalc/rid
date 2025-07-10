@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4bmc6jugr2ku"]
+
+[ext_resource type="Script" uid="uid://oqbycvldsbi2" path="res://scenes/unit_walk_overlay/unit_walk_overlay.gd" id="1_2gc84"]
+[ext_resource type="TileSet" uid="uid://b7lyg8epvjvll" path="res://scenes/unit_walk_overlay/unit_walk_overlay_tileset.tres" id="1_8uisq"]
+
+[node name="UnitOverlay" type="TileMap"]
+modulate = Color(1, 1, 1, 0.392157)
+light_mask = 0
+tile_set = ExtResource("1_8uisq")
+format = 2
+layer_0/name = "floatbox"
+layer_0/modulate = Color(1, 1, 1, 0.27451)
+layer_0/z_index = 50
+script = ExtResource("1_2gc84")

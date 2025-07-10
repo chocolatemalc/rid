@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://cffabgpjea7ab"]
+
+[ext_resource type="Script" path="res://scenes/control.gd" id="1_478jo"]
+[ext_resource type="Resource" uid="uid://igyiq87oe5qm" path="res://node res/grid/grid.tres" id="4_f1b28"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_5g4y5"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_hgch3"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_478jo")
+grid = ExtResource("4_f1b28")
+
+[node name="Team Select" type="OptionButton" parent="."]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 20.0
+button_group = SubResource("ButtonGroup_5g4y5")
+item_count = 5
+selected = 0
+popup/item_0/text = "Team 1"
+popup/item_0/id = 1
+popup/item_1/text = "Team 2"
+popup/item_1/id = 2
+popup/item_2/text = "Team 3"
+popup/item_2/id = 3
+popup/item_3/text = "Team 4"
+popup/item_3/id = 4
+popup/item_4/text = "Team 5"
+popup/item_4/id = 5
+
+[node name="Class Select" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 38.0
+offset_right = 99.0
+offset_bottom = 69.0
+button_group = SubResource("ButtonGroup_hgch3")
+item_count = 5
+selected = 0
+popup/item_0/text = "Class 1"
+popup/item_0/id = 1
+popup/item_1/text = "Class 2"
+popup/item_1/id = 2
+popup/item_2/text = "Class 4"
+popup/item_2/id = 3
+popup/item_3/text = "Class 4"
+popup/item_3/id = 4
+popup/item_4/text = "Class 5"
+popup/item_4/id = 5
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_top = 76.0
+offset_right = 121.0
+offset_bottom = 107.0
+text = "Spawn the guy"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://b60lpi7g48ad0"]
+
+[ext_resource type="Script" path="res://scripts/unit_path_2d.gd" id="1_lmlol"]
+[ext_resource type="Texture2D" uid="uid://bo31lbg0toba6" path="res://graphics_resources/32b_shadow.png" id="1_lwftw"]
+[ext_resource type="Texture2D" uid="uid://c7lwgsces1h8c" path="res://graphics_resources/characters/rogues.png" id="2_5owlu"]
+
+[sub_resource type="Animation" id="Animation_7ydbl"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("unit_path_follow_2d/unit_sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("unit_path_follow_2d/unit_sprite_shadow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6spgy"]
+resource_name = "selected"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("unit_path_follow_2d/unit_sprite:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1489.24, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.411765)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("unit_path_follow_2d/unit_sprite_shadow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.680476, 1, 0.652914, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_db6f2"]
+_data = {
+"idle": SubResource("Animation_7ydbl"),
+"selected": SubResource("Animation_6spgy")
+}
+
+[node name="unit_path_2D" type="Path2D"]
+script = ExtResource("1_lmlol")
+
+[node name="unit_path_follow_2d" type="PathFollow2D" parent="."]
+rotates = false
+loop = false
+
+[node name="unit_sprite_shadow" type="Sprite2D" parent="unit_path_follow_2d"]
+texture = ExtResource("1_lwftw")
+offset = Vector2(0, -11)
+
+[node name="unit_sprite" type="Sprite2D" parent="unit_path_follow_2d"]
+position = Vector2(0, -16)
+texture = ExtResource("2_5owlu")
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="unit_animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_db6f2")
+}

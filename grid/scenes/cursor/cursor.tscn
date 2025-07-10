@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://co0j24p16nwlb"]
+
+[ext_resource type="Script" uid="uid://dkmsmenv5dxd2" path="res://scenes/cursor/cursor.gd" id="1_qp1s2"]
+[ext_resource type="Resource" uid="uid://igyiq87oe5qm" path="res://node res/grid/grid.tres" id="2_kq3g1"]
+
+[node name="cursor" type="Node2D"]
+script = ExtResource("1_qp1s2")
+grid = ExtResource("2_kq3g1")
+
+[node name="cursor_sprite" type="Sprite2D" parent="."]
+offset = Vector2(16, 16)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
