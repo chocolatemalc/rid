@@ -10,7 +10,7 @@ func _ready(): #complete jank, do not change names of mp_spawn_positions nodes
 	var local_keys = local_dict.keys()
 	local_keys.sort()
 	for i in local_keys:
-		var current_peer = player_spawn_scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE) ## instantiate within gameboard please
+		var current_peer = player_spawn_scene.instantiate(PackedScene.GEN_EDIT_STATE_DISABLED) ## instantiate within gameboard please
 		current_peer.entity_team = MpControlManager.mp_peers[i].team_index
 		current_peer.mp_id = int(MpControlManager.mp_peers[i].id)
 		#current_peer.set_multiplayer_authority(MpControlManager.mp_peers[i].id) innapropriate, define another @export var in character for owner (id). Set here and modify whether it can be selected in movement code

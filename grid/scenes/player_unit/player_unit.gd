@@ -48,16 +48,12 @@ func _ready() -> void:
 	
 	
 	##I can't figure this shit out man, malcolm please do the type variation stuff i stupid
-	var player_box = _health_bar_anim.get_theme_stylebox("fill","ProgressBar").duplicate()
-	var p_col = GlobalSettings.player_unit_health_bar_color
-	player_box.set("fill", Color(p_col[0],p_col[1],p_col[2],p_col[3]))
-	var enemy_box = _health_bar_anim.get_theme_stylebox("fill","ProgressBar").duplicate()
-	var e_col = GlobalSettings.enemy_unit_health_bar_color
-	enemy_box.set("fill", Color(e_col[0],e_col[1],e_col[2],e_col[3]))
-	# style box adjustments for player/enemy
-	if int(main.mp_id) == int(mp_id):
-		_health_bar_anim.set("fill",Color(p_col[0],p_col[1],p_col[2],p_col[3]))
-	_health_bar_anim.set("fill",Color(e_col[0],e_col[1],e_col[2],e_col[3]))
+	#if multiplayer.get_unique_id() == int(mp_id):
+	print(str(multiplayer.get_unique_id()) == str(mp_id))
+	if str(multiplayer.get_unique_id()) == str(mp_id):
+		_health_bar_anim.theme_type_variation = "health_player"
+	else: _health_bar_anim.theme_type_variation = "health_enemy"
+	#_health_bar_anim.theme_type_variation = "health_enemy"
 	#_health_bar_anim.set("theme_override_styles/fill",col_set)
 	
 	# sprite setting
