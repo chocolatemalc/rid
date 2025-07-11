@@ -61,6 +61,9 @@ mouse_force_pass_scroll_events = false
 
 [node name="player_camera" parent="Game_Board" instance=ExtResource("11_fowwp")]
 
+[node name="unit_walk_overlay" parent="Game_Board" instance=ExtResource("9_blune")]
+tile_set = SubResource("TileSet_blune")
+
 [node name="unit_path_rendering" parent="Game_Board" instance=ExtResource("6_ouso4")]
 tile_set = ExtResource("7_a8run")
 rendering_quadrant_size = 32
@@ -83,9 +86,6 @@ position = Vector2(524, 524)
 
 [node name="3" type="Node2D" parent="Game_Board/mp_spawn_positions" groups=["mp_spawn"]]
 position = Vector2(256, 524)
-
-[node name="unit_walk_overlay" parent="Game_Board" instance=ExtResource("9_blune")]
-tile_set = SubResource("TileSet_blune")
 
 [connection signal="accept_pressed" from="Game_Board/cursor" to="Game_Board" method="_on_cursor_accept_pressed"]
 [connection signal="moved" from="Game_Board/cursor" to="Game_Board" method="_on_cursor_moved"]
