@@ -22,7 +22,6 @@ var cell := Vector2.ZERO:
 		var new_cell: Vector2 = grid.grid_clamp(value)
 		if new_cell.is_equal_approx(cell):
 			return
-
 		cell = new_cell
 		# If we move to a new cell, we update the cursor's position, emit
 		#	a signal, and start the cooldown timer that will limit the rate
