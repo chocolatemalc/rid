@@ -4,14 +4,6 @@ saar please
 
 
 
-# Git
-
-`git clone http://basilisk.zapto.org:8008/git/codename-benis`
-
-## Server
-
-[Storage information](http://basilisk.zapto.org:8008/space)
-
 # Godot 4
 
 ## Filetypes
